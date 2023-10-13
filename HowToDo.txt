@@ -1,4 +1,4 @@
-
+expliquer les commandes et tout ce quil y a faire pour que qqun qui s'y connait pas puisse exec
 docker build -t test .
 
 docker run -it test bash
