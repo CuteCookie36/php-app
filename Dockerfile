@@ -32,5 +32,8 @@ EOF
 WORKDIR /var/www/html
 COPY . .
 
+RUN composer update
+RUN composer install
+EXPOSE 80
 
 

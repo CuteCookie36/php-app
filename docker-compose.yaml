@@ -1,29 +1,52 @@
 version: '3'
 services:
-  web:
-    image: php:7.4-apache-bullseye
-    container_name: my_php_app
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8080:80"
-    volumes:
-      - .:/var/www/html
-    depends_on:
-      - rabbitmq
 
+  # web:
+  #   image: php:7.4-apache-bullseye
+  #   container_name: my_php_app
+  #   ports:
+  #     - "8080:80"
+  #   volumes:
+  #     - .:/var/www/html
+  #   depends_on:
+  #     - rabbitmq
+
+  # rabbitmq:
+  #   image: "rabbitmq:3-management"
+  #   container_name: rabbitmq
+  #   # ports:
+  #   #   - "15672:15672"
+  #   #   - "5672:5672"
+  
   rabbitmq:
-    image: "rabbitmq:3-management"
-    container_name: rabbitmq
-    # ports:
-    #   - "15672:15672"
-    #   - "5672:5672"
+    image: rabbitmq:3-management
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 30s
+      retries: 3
 
-  php:
-    image: php:7.4-apache-bullseye
-    container_name: php_container
-    volumes:
-      - .:/var/www/html
+  # php:
+  #   image: php:7.4-apache-bullseye
+  #   container_name: php_container
+  #   volumes:
+  #     - .:/var/www/html
+  #   depends_on:
+  #     - rabbitmq
+
+  app:
+    build:
+      context: .
+    entrypoint: php server.php
     depends_on:
-      - rabbitmq
+      rabbitmq:
+        condition: service_healthy
 
 # networks:
 #   default:
