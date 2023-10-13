@@ -10,7 +10,7 @@ Télécharger une vidéo à l'aide de script php.
 
 #### Comment exécuter des tests:
 1. Ouvrir le dépot GIT dans un éditeur de code (de type VScode: `git clone https://github.com/CuteCookie36/php-app`).
-2. Utilisez la commande suivante pour run le docker-composer puis ouvrez DockerDesktop : `docker-compose up` .
+2. Utilisez la commande suivante pour run le docker-composer : `docker-compose up` .
 3. Utilisez la commande suivante pour ouvrir un shell et executer le php: `docker-compose exec php bash`.
 4. Lancer ls pour vérifier que les fichiers sont bien présents puis lancez: `php client.php`.
 5. Un message apparait alors vous disant que la vidéo a été envoyée au serveur.

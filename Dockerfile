@@ -10,6 +10,8 @@ FROM php:7.4-apache-bullseye
 # lsb-release
 # EOF
 
+########################faire attention aux espaces avec RUN <<EOF (mettre LF au lieu de CRLF sur vscode)
+
 RUN apt-get update
 RUN apt-get install -y git=1:2.30.2-1+deb11u2 
 RUN apt-get install -y wget=1.21-1+deb11u1 
